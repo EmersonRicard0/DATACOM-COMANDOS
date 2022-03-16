@@ -3,8 +3,11 @@ Uma ajuda com comandos para auxiliar na verificação e configuração de olt e 
 
 
 
-###DATACOM##COMANDOS###
+
 ::::MODO GLOBAL  VERICICAÇÕES:::
+
+
+
 show running-config ("verifica todas as configurações feitas")
 
 show running-config dot1q (" é possivel verificar por blocos , por exemplo de vlans:"dot1q") 
