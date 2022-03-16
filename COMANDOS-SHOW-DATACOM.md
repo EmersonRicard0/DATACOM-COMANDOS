@@ -24,21 +24,31 @@ show tech-support ("trás todos os show existentes em um só comando")
 
 show alarm ("Verifica alarmes no equipamento")
 
-:::VERIFICAÇÃO INTERFACE ETHERNET:::
+
+::::VERIFICAÇÃO INTERFACE ETHERNET::::
+
+
 show interface gigabit-ethernet 1/1/1 ("O comando trás status da porta ")
 
 show interface link ("vai trazer todos as portas na descrição , status ")
 
 show interface transceivers ("Trás status dos modelos sfp e gpon")
 
-:::VERIFICAÇÃO DE VLANS:::
+
+::::VERIFICAÇÃO DE VLANS::::
+
+
 show vlan brief ("Resumo das vlans")
 
 show vlan membership brief ("Verifica a quais membros a vlan está associada")
 
 show running-config dot1q | tab (" verificação de vlans ,| tab serve para transforma a descrição em tabela")
 
-:::VERIFICAÇÃO DE GPON:::
+
+
+::::VERIFICAÇÃO DE GPON::::
+
+
 
 show interface gpon 1/1/1 ("Vai trazer informações da interface gpon 1/1/1 ")
 
