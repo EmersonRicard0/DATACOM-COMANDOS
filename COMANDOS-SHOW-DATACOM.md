@@ -1,5 +1,5 @@
 # DATACOM-COMANDOS
-Uma ajuda com comandos para auxiliar verificação e configuração de olt e sw  DATACOM
+Uma ajuda com comandos para auxiliar na verificação e configuração de olt e sw  DATACOM
 
 
 
