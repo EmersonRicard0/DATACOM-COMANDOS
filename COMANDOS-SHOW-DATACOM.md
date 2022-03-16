@@ -4,7 +4,7 @@ Uma ajuda com comandos para auxiliar na verificação e configuração de olt e 
 
 
 
-::::MODO GLOBAL  VERICICAÇÕES:::
+::::MODO GLOBAL  VERICICAÇÕES::::
 
 
 
