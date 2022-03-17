@@ -64,3 +64,4 @@ show running-config profile gpon bandwidth-profile("verifica todos os profiles p
 
 show running-config profile gpon line-profile(" é oque esta entregando ao cliente")
 
+show running-config interface gpon | context-match GPON00AC6AC6 ("Caso vc deseje localizar um serial de onu ")
