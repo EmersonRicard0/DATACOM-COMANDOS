@@ -1,0 +1,111 @@
+:::::Passos para configuração de onu Brige e Router:::::
+
+"O cenario vai ser utilizado 4 vlans referente a a cada pon ser associada a uma vlan, exemplo: pon1 vai associada a vlan 30 " 
+
+
+::::vlan de serviço PPPOE:
+
+dot1q vlan 30 name PPPoe interface gigabit-ethernet-1/1/10 tagged
+dot1q vlan 31 name PPPoe interface gigabit-ethernet-1/1/10 tagged
+dot1q vlan 32 name PPPoe interface gigabit-ethernet-1/1/10 tagged
+dot1q vlan 33 name PPPoe interface gigabit-ethernet-1/1/10 tagged
+
+
+::::service vlan
+    tipo: n:1 ("é voltada a clientes residenciais")
+        tipo: 1:1 ("é voltada a clientes link dedicado")
+            tipo: tls ("permite que as onu troquem informações, ex: voip") 
+
+
+service vlan 30 type n:1
+service vlan 31 type n:1
+service vlan 32 type n:1
+service vlan 33 type n:1
+
+::::controle de banda - bandwidth-profile
+
+para PPPoe
+profile gpon bandwidth-profile PPPoe
+
+traffic type-4 max-bw 1106944  ("max-bw quer dizer que vai ser utlizado o maximo de trafego da porta")
+
+
+::::Line Profile - ONU Bridge
+
+profile gpon line-profile PPPoe-INTERNET
+
+upstream-fec
+
+tcont 1 bandwidth-profile PPPoe
+tcont 2 bandwidth-profile PPPoe
+tcont 3 bandwidth-profile PPPoe
+tcont 4 bandwidth-profile PPPoe
+
+gem 1
+ tcont 1 priority 0
+   map PPPoe-Bridge-30 ethernet 1  vlan 30 cos any
+
+gem 2
+ tcont 2 priority 0
+   map PPPoe-Bridge-31 ethernet 1  vlan 31 cos any
+
+gem 3
+ tcont 3 priority 0
+   map PPPoe-Bridge-32 ethernet 1  vlan 32 cos any
+
+gem 4
+ tcont 4 priority 0
+   map PPPoe-Bridge-33 ethernet 1  vlan 33 cos any   
+   
+
+::::Line Profile - ONU ROUTER
+
+
+profile gpon line-profile PPPoe-INTERNET-ONT
+
+tcont 1 bandwidth-profile PPPoe
+
+gem 1 tcont 1 priority 0
+
+map PPPoe-ONT veip 1  vlan 30 cos any
+
+
+
+::::Line Profile - ONU ONT
+
+profile gpon line-profile PPPoe-INTERNET-ONT
+
+upstream-fec
+
+tcont 1 bandwidth-profile PPPoe
+tcont 2 bandwidth-profile PPPoe
+tcont 3 bandwidth-profile PPPoe
+tcont 4 bandwidth-profile PPPoe
+
+gem 1
+ tcont 1 priority 0
+   map PPPoe-ONT-30 veip 1  vlan 30 cos any
+
+gem 2
+ tcont 2 priority 0
+   map PPPoe-ONT-31 veip 1  vlan 31 cos any
+
+gem 3
+ tcont 3 priority 0
+   map PPPoe-ONT-32 veip 1  vlan 32 cos any
+
+gem 4
+ tcont 4 priority 0
+   map PPPoe-ONT-33 veip 1  vlan 33 cos any   
+
+
+
+
+
+
+
+
+
+
+
+
