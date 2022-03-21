@@ -14,4 +14,6 @@ config
  commit
  
  
- Obs:vale lembrar que cada service port é associado a 1 onu, se for repetido a antiga onu será desvinculada ao service port
+ Obs: 
+    Vale lembrar que cada service port é associado a 1 onu, se for repetido a antiga onu será desvinculada ao service port
+    Fique atento ao numero de service port e ID de cada onu, pois sempre devem ser novos
