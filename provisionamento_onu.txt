@@ -12,3 +12,6 @@ config
     top
  service-port [Z] gpon 1/1/1 onu [X] gem 1 match vlan vlan-id [Y] action vlan replace vlan-id [Y]
  commit
+ 
+ 
+ Obs:vale lembrar que cada service port é associado a 1 onu, se for repetido a antiga onu será desvinculada ao service port
