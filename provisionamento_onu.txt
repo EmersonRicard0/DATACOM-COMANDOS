@@ -1,0 +1,14 @@
+Registrar ONU:
+config
+ interface gpon 1/1/1
+  onu [X]
+   name NomeCliente
+   serial-number DACM0001049C
+   service-profile Generic line-profile Generic
+   ethernet 1
+    negotiation
+    no shutdown
+    native vlan vlan-id [Y]
+    top
+ service-port [Z] gpon 1/1/1 onu [X] gem 1 match vlan vlan-id [Y] action vlan replace vlan-id [Y]
+ commit
