@@ -1,0 +1,110 @@
+###Configurações iniciase e introdução###
+
+
+config terminal
+Durante o modo de configuração, para APLICAR uma configuração feita:
+commit
+
+Da mesma forma, para DESCARTAR as alterações feitas:
+clear
+
+Para reverter a última configuração aplicada, pode-se usar o comando:
+rollback configuration
+
+Para resetar as configurações de volta ao padrão de fábrica:
+load factory-config
+commit
+
+
+
+###Configurar Hostname da OLT###
+config
+ hostname DM4610-ISP
+ commit
+
+###Configuração de hora###
+
+Definir timezone:
+config
+ clock timezone Brasil -3
+
+Manual:
+set system clock AAAAMMDD HH:MM:SS
+
+Automática (NTP):
+config
+ sntp client
+ sntp server 200.160.7.186
+  authenticate none
+  commit
+
+Configuração do SNMP:
+config
+ snmp agent enabled
+ snmp agent version v2c
+ snmp community public
+  sec-name public
+  commit
+
+###Configuração de usuários###
+Existem três grupos de usuários criados por default na OLT, são eles:
+
+
+admin: Permissão completa, permite leitura e gravação para todas as funções da OLT
+config: Permite algumas configurações, mas não administrativas. Funções como: hostname, SNMP, monitor, RADIUS, SNTP, TACACS+ e Usuários ficam restritas
+audit: Permite apenas leitura
+
+Para criar um novo usuário, usamos o comando:
+config
+ aaa user USERNAME password "NOVA-SENHA"
+  group GRUPO
+  commit
+
+Para remover um usuário:
+config
+ no aaa user USERNAME
+ commit
+
+
+
+
+
+##Configurando gerência out-band##
+
+
+config
+ ! Configurar IP da interface
+ interface mgmt 1/1/1
+  ipv4 address 172.16.254.2/30
+  top
+ ! Configurar rota default
+ router static
+  address-family ipv4
+   0.0.0.0/0 next-hop 172.16.254.1
+     top
+ ! Aplicando as configurações
+ commit
+
+##Para gerência in-band##
+
+config
+ ! Cria a vlan de gerência e atribui a porta desejada
+ dotq1
+  vlan 10
+   name In_Band-Management
+   interface gigabit-ethernet-1/1/1
+   top
+ ! Configura o IP da vlan de gerência e vincula com o vlan-id
+ interface l3 in-band
+  ipv4 address 172.24.22.1/24
+  lower-layer-if vlan 10
+  top
+ ! Configurar rota default
+ router static
+  address-family ipv4
+   0.0.0.0/0
+   next-hop 172.24.22.254
+   top
+ ! Aplicando as configurações
+ commit
+
