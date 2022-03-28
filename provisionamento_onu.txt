@@ -4,7 +4,7 @@ config
   onu [X]
    name NomeCliente
    serial-number DACM0001049C
-   service-profile Generic line-profile NOME-DO-PROFILE
+   line-profile NOME-DO-PROFILE
    ethernet 1
     negotiation
     no shutdown
