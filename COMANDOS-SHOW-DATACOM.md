@@ -10,6 +10,8 @@ Uma ajuda com comandos para auxiliar na verificação e configuração de olt e 
 
 show running-config ("verifica todas as configurações feitas")
 
+show running-config service-port ("Vefica todos os service-port criados")
+
 show running-config dot1q (" é possivel verificar por blocos , por exemplo de vlans:"dot1q") 
 
 show environment  ("verifica a parte de temperatura do equipamento")
