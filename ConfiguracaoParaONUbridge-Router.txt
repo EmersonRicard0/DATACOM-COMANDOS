@@ -101,9 +101,18 @@ gem 4
 
 
 
+Outra forma de criar um profile para varias vlan é usar o prefixo "vlan any", 
+any quer dizer pode associar qualquer vlan de serviço criada
 
+gem 1
+  tcont 1 priority 0
+  map PPPoe-ONT-11
+   veip 1 vlan any cos any
+  !
+ !
+!
 
-
+Dessa forma, caso precisar vincular o transmissor com o ixc, não irá precisar criar varios perfil de autenticaçao
 
 
 
