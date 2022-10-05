@@ -1,4 +1,4 @@
-###Configurações iniciase e introdução###
+###Configurações iniciaes e introdução###
 
 
 config terminal
